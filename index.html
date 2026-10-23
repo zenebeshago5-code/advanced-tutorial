@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ADVANCED A+ TUTORIAL CLASS</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    :root {
+      --bg: #f3f6fc;
+      --card: #ffffff;
+      --text: #17243c;
+      --blue: #2458d6;
+      --muted: #69758a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 18px;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px Arial, sans-serif;
+    }
+    header {
+      padding: 25px 20px;
+      border-radius: 22px;
+      color: white;
+      background: linear-gradient(135deg, #142d66, #3478f6);
+    }
+    header p { line-height: 1.5; }
+    .tag {
+      display: inline-block;
+      background: #ffffff24;
+      padding: 7px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+    }
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    select, input, button {
+      font: inherit;
+      border-radius: 12px;
+      padding: 12px;
+    }
+    select, input {
+      width: 100%;
+      border: 1px solid #d9e1ef;
+      background: var(--card);
+      color: var(--text);
+    }
+    h1 { font-size: 25px; line-height: 1.2; }
+    h2 { font-size: 19px; }
+    .card {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 17px;
+      margin-top: 16px;
+      box-shadow: 0 5px 20px #152b4a0b;
+    }
+    .course {
+      border: 1px solid #e3e9f4;
+      padding: 14px;
+      border-radius: 14px;
+      margin: 10px 0;
+    }
+    .muted { color: var(--muted); line-height: 1.5; }
+    .price { color: var(--blue); font-size: 23px; font-weight: bold; }
+    label { display: block; margin: 12px 0 6px; font-weight: bold; }
+    button {
+      width: 100%;
+      border: 0;
+      background: var(--blue);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+    .secondary {
+      background: #e8efff;
+      color: var(--blue);
+    }
+    #notice { white-space: pre-line; }
+    footer { text-align: center; padding: 22px 0; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="top">
+    <strong>ADVANCED A+</strong>
+    <select id="language" aria-label="Language" style="width:125px">
+      <option value="en">English</option>
+      <option value="am">አማርኛ</option>
+    </select>
+  </div>
+
+  <header>
+    <span class="tag">ONLINE LEARNING</span>
+    <h1 id="welcome">Learn. Improve. Succeed.</h1>
+    <p id="intro">Welcome to ADVANCED A+ TUTORIAL CLASS.
+       Explore our tutorials and register today.</p>
+  </header>
+
+  <section class="card">
+    <h2 id="coursesTitle">Our Courses</h2>
+    <div class="course">
+      <strong id="courseName">All Tutorial Courses</strong>
+      <p class="muted" id="courseDesc">
+        Learn with structured tutorial sessions and guided support.
+      </p>
+      <div class="price">300 ETB</div>
+    </div>
+    <p class="muted" id="feeNote">The listed fee covers all courses.</p>
+  </section>
+
+  <section class="card">
+    <h2 id="paymentTitle">Payment Instructions</h2>
+    <p class="muted" id="paymentText">
+      Pay through Commercial Bank of Ethiopia (CBE) using the
+      official account details provided by the class administrator.
+      Enter your transaction reference when registering.
+      Your registration remains pending until payment is verified.
+    </p>
+    <p><strong id="accountLabel">Official CBE account details</strong></p>
+    <p class="muted" id="accountText">
+      Contact the class administrator for verified payment details.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2 id="registerTitle">Student Registration</h2>
+    <form id="registration">
+      <label for="studentName" id="nameLabel">Full name</label>
+      <input id="studentName" maxlength="80" required
+        autocomplete="name" placeholder="Enter your full name">
+
+      <label for="phone" id="phoneLabel">Contact number (optional)</label>
+      <input id="phone" maxlength="25" autocomplete="tel"
+        placeholder="Phone number">
+
+      <label for="reference" id="referenceLabel">
+        Payment transaction reference (optional)
+      </label>
+      <input id="reference" maxlength="100"
+        placeholder="Transaction reference">
+
+      <button type="submit" id="registerButton">Submit Registration</button>
+      <button type="button" class="secondary" id="contactButton">
+        Contact Administrator
+      </button>
+      <p id="notice" class="muted" role="status"></p>
+    </form>
+  </section>
+
+  <footer>ADVANCED A+ TUTORIAL CLASS</footer>
+
+  <script>
+    const tg = window.Telegram?.WebApp;
+    tg?.ready();
+    tg?.expand();
+
+    const copy = {
+      en: {
+        welcome: "Learn. Improve. Succeed.",
+        intro: "Welcome to ADVANCED A+ TUTORIAL CLASS. Explore our tutorials and register today.",
+        coursesTitle: "Our Courses",
+        courseName: "All Tutorial Courses",
+        courseDesc: "Learn with structured tutorial sessions and guided support.",
+        feeNote: "The listed fee covers all courses.",
+        paymentTitle: "Payment Instructions",
+        paymentText: "Pay through Commercial Bank of Ethiopia (CBE) using the official account details provided by the class administrator. Enter your transaction reference when registering. Your registration remains pending until payment is verified.",
+        accountLabel: "Official CBE account details",
+        accountText: "Contact the class administrator for verified payment details.",
+        registerTitle: "Student Registration",
+        nameLabel: "Full name",
+        phoneLabel: "Contact number (optional)",
+        referenceLabel: "Payment transaction reference (optional)",
+        registerButton: "Submit Registration",
+        contactButton: "Contact Administrator",
+        missing: "Please enter your full name.",
+        sent: "Registration information prepared. Follow the instructions in Telegram.",
+        unavailable: "The Telegram submit feature is not available in this launch mode yet.",
+        contact: "Please open the class bot and ask for the administrator's contact."
+      },
+      am: {
+        welcome: "ተማሩ። እድገት ያድርጉ። ይሳኩ።",
+        intro: "እንኳን ወደ ADVANCED A+ TUTORIAL CLASS በደህና መጡ። ኮርሶቻችንን ይመልከቱና ይመዝገቡ።",
+        coursesTitle: "የኮርስ ዝርዝር",
+        courseName: "ሁሉም የትምህርት ኮርሶች",
+        courseDesc: "በተደራጀ የትምህርት ክፍለ ጊዜ ይማሩ።",
+        feeNote: "የተጠቀሰው ክፍያ ሁሉንም ኮርሶች ያካትታል።",
+        paymentTitle: "የክፍያ መመሪያ",
+        paymentText: "በክፍሉ አስተዳዳሪ የተረጋገጡ የCBE የሂሳብ መረጃዎችን ብቻ ይጠቀሙ። ሲመዘገቡ የግብይት መለያ ያስገቡ። ክፍያዎ እስኪረጋገጥ ድረስ ምዝገባዎ በጊዜያዊነት ይቆያል።",
+        accountLabel: "የCBE ሂሳብ መረጃ",
+        accountText: "ትክክለኛ የክፍያ መረጃ ለማግኘት አስተዳዳሪውን ያነጋግሩ።",
+        registerTitle: "የተማሪ ምዝገባ",
+        nameLabel: "ሙሉ ስም",
+        phoneLabel: "ስልክ ቁጥር (አማራጭ)",
+        referenceLabel: "የክፍያ ግብይት መለያ (አማራጭ)",
+        registerButton: "ምዝገባ ላክ",
+        contactButton: "አስተዳዳሪውን ያነጋግሩ",
+        missing: "እባክዎ ሙሉ ስምዎን ያስገቡ።",
+        sent: "የምዝገባ መረጃ ተዘጋጅቷል። በTelegram ያሉትን መመሪያዎች ይከተሉ።",
+        unavailable: "የTelegram የማስገቢያ ባህሪ በዚህ የመክፈቻ መንገድ ገና አልተዘጋጀም።",
+        contact: "የክፍሉን bot ከፍተው የአስተዳዳሪውን መረጃ ይጠይቁ።"
+      }
+    };
+
+    const fields = [
+      "welcome", "intro", "coursesTitle", "courseName", "courseDesc",
+      "feeNote", "paymentTitle", "paymentText", "accountLabel",
+      "accountText", "registerTitle", "nameLabel", "phoneLabel",
+      "referenceLabel", "registerButton", "contactButton"
+    ];
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang === "am" ? "am" : "en";
+      fields.forEach(id => {
+        document.getElementById(id).textContent = copy[lang][id];
+      });
+      document.getElementById("notice").textContent = "";
+    }
+
+    document.getElementById("language").addEventListener("change", e => {
+      setLanguage(e.target.value);
+    });
+
+    document.getElementById("registration").addEventListener("submit", e => {
+      e.preventDefault();
+      const lang = document.getElementById("language").value;
+      const data = {
+        type: "tutorial_registration",
+        name: document.getElementById("studentName").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        reference: document.getElementById("reference").value.trim(),
+        language: lang
+      };
+
+      if (!data.name) {
+        document.getElementById("notice").textContent = copy[lang].missing;
+        return;
+      }
+
+      if (tg && typeof tg.sendData === "function") {
+        tg.sendData(JSON.stringify(data));
+        document.getElementById("notice").textContent = copy[lang].sent;
+      } else {
+        document.getElementById("notice").textContent = copy[lang].unavailable;
+      }
+    });
+
+    document.getElementById("contactButton").addEventListener("click", () => {
+      const lang = document.getElementById("language").value;
+      document.getElementById("notice").textContent = copy[lang].contact;
+    });
+
+    setLanguage("en");
+  </script>
+</body>
+</html>
